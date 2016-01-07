@@ -2,37 +2,40 @@
 
 <html>
 
-	<head>
-		<link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
-		<title>URL Shortener Microservice</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+	<title>Image Search Abstraction Layer</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 
-	</head>
-	<body>
-		<div class="container">
-			<div class="jumbotron">
-			  <h1>URL Shortener Microservice</h1>
-			 <p> User stories:</p>
-<p>1)  I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
-</p>
-<p>2)  If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
-</p>
-<p>3)  When I visit that shortened URL, it will redirect me to my original link.
-</p>
+</head>
 
-			</div>
-		<h1>	Example creation usage:</h1>
-<div><code><script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/new/https://www.google.com </code></div>
-<div><code><script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/new/http://freecodecamp.com/news</code></div>
-<h1>Example creation output:</h1>
-<code>{ "original_url": "http://freecodecamp.com/news", "short_url": "<script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/4" }</code>
-<h1>Usage:</h1>
-<code><script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/4</code>
-<h1>Will redirect to :</h1>
-<code>http://freecodecamp.com/news</code>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Image Search Abstraction Layer</h1>
+			<p> User stories:</p>
+			<p>1) I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+			</p>
+			<p>2) I can paginate through the responses by adding a ?offset=2 parameter to the URL.
+			</p>
+			<p>3) I can get a list of the most recently submitted search strings.
+			</p>
+
 		</div>
+		<h1>	Example image search usage:</h1>
+		<div><code><script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/imagesearch/lolcats%20funny?offset=10</code></div>
+		<h1>Example image search output:</h1>
+		<code>
+	[{"url":"http://data.whicdn.com/images/17561072/large.jpg","snippet":"Maybe I eat all the","thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCO7BmkKUwgNi-4qSy3wwgbhQA0ZYY0Qs-U0wS5cX3koIGU2fRP6k_BEU","context":"http://weheartit.com/entry/group/6330716"},{"url":"http://funnypicturesimages.com/images/image/lolcats-funny-pictures-leroy.jpg","snippet":"funny animal picture - Buscar","thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4q44VPxEUj9xcWvPXfuRnj9VMuTIvdrWQL3SsKpjnOrjA3uI7lsWy86w","context":"http://weheartit.com/entry/group/607840"},{"url":"http://data.whicdn.com/images/31771482/large.jpg","snippet":"sadbuttrue and funny","thumbnail":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSARTd_0m1r8xvroQSuhdV09QAuihK1emghiz1M2TgA1kdjlQAMR71xasDh","context":"http://weheartit.com/entry/group/42401457"},{"url":"http://cdnstatic.visualizeus.com/thumbs/55/2f/cats,funny,animal,lolcats-552f88b43a77004908f4c743f8d5867d_h.jpg","snippet":"ps lolcats","thumbnail":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-U4jx36YbHATSNg1nbgYbdplownwObivx_LDKLaTiBzwjjLHsDDJl5ss","context":"http://vi.sualize.us/ps_funny_lolcats_animal_cats_picture_bqM.html"},{"url":"https://i.ytimg.com/vi/eJPYbdnbNh8/hqdefault.jpg","snippet":"When LOLCats Go Bad Evil LOL","thumbnail":"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSSe5PJFGRKqPCrdptbd2Zshuw3jqMQXM__jsH_lF1W2bUz7HJb6JquJMuA","context":"https://www.youtube.com/watch?v=eJPYbdnbNh8"},{"url":"https://s-media-cache-ak0.pinimg.com/736x/3e/6c/a4/3e6ca41c15eb1bafefe63d664e71dd86.jpg","snippet":"That leg #lolcats #funny","thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRewV6lOGSEil74y13ytS0WeY3q2yIsoIP9LSNS4s515f57jUl_xG5lmrnF","context":"https://www.pinterest.com/pin/255720085065093343/"},{"url":"https://i.ytimg.com/vi/rHzOau7ZKpA/hqdefault.jpg","snippet":"My Love LolCats Funny Cats","thumbnail":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEspafya5KS3hBmt43BQpCxvtW4mCvhRnWybRNxe3Td96L-OgnhIlup4Q","context":"https://www.youtube.com/watch?v=rHzOau7ZKpA"},{"url":"https://s-media-cache-ak0.pinimg.com/736x/61/df/d5/61dfd5d55076411f236f403a137cae6b.jpg","snippet":"#funny #lolcats #cats: Cat","thumbnail":"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTZS8Y6pxYuN04Zc3dx48feb2EV0CJHlYHTFxq8EqGFZL5pYFF4GhgZQvpj","context":"https://www.pinterest.com/pin/86201780339383620/"},{"url":"https://i.ytimg.com/vi/r_o3q7zc21Y/hqdefault.jpg","snippet":"LOLCats - Funniest cat","thumbnail":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRtxCOQ1jMfrfEDBrBAkpR7Ifk1glwYlUgctm05hmgT1V_0LjTr3WX00tjE","context":"https://www.youtube.com/watch?v=r_o3q7zc21Y"},{"url":"http://data.whicdn.com/images/29044507/large.jpg","snippet":"Most popular tags for this","thumbnail":"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRre4NmoJmEOVxSi1VNAumtmb6nuuTpYrLlCPGuOwXXF-R34ngusPjC144","context":"http://weheartit.com/entry/group/1764108"}]
+		</code>
+		<h1>Example recent image search usage:</h1>
+		<code><script>document.write(window.location.protocol +"//"+  window.location.hostname)</script>/latest/imagesearch/</code>
+		<h1>Example recent image search output:</h1>
+		<code>
+[{"term":"lolcats funny","when":"2016-01-07T16:38:41.323Z"},{"term":"lolcats funny","when":"2016-01-07T16:38:30.276Z"},{"term":"lolcats funny","when":"2016-01-07T16:35:56.524Z"},{"term":"lolcats funny","when":"2016-01-07T16:05:03.927Z"},{"term":"lolcats funny","when":"2016-01-07T16:04:47.507Z"},{"term":"lolcats funny","when":"2016-01-07T15:42:50.525Z"},{"term":"lolcats funny","when":"2016-01-07T15:38:53.794Z"},{"term":"lolcats funny big","when":"2016-01-07T15:34:01.037Z"},{"term":"lolcats funny big","when":"2016-01-07T15:33:41.369Z"},{"term":"lolcats funny big","when":"2016-01-07T15:33:36.865Z"}]	</code>
+	</div>
 
-	</body>
+</body>
 
 </html>

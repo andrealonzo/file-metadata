@@ -1,11 +1,11 @@
-# URL Shortener Microservice
+# Image Search Abstraction Layer
 
 
 ## Overview
 
-This is my implementation of the URL Shortener Microservice basejump for Free Code Camp.  This project uses Node.js, Express, and Mocha for testing.
+This is my implementation of the Image Search Abstraction Layer basejump for Free Code Camp.  This project uses Node.js, Express, MongoDB, and Mocha for testing.
 
-A running version of this program can be found at https://url-shortener-microservice.herokuapp.com/
+A running version of this program can be found at https://imgsearch.herokuapp.com/
 
 ## Testing
 
