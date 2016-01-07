@@ -41,13 +41,13 @@ var shutdown = function() {
 	}
 }
 
-var connectDB = function(dbName) {
-	var connection = mongoose.connect(process.env.MONGO_URI + dbName);
-	return connectDB;
+var connectDB = function(dbName, done) {
+    if (mongoose.connection.db) return done();
+	mongoose.connect(process.env.MONGO_URI + dbName, done);
 }
-var disconnectDB = function() {
+var disconnectDB = function(done) {
     mongoose.connection.close();
-    mongoose.disconnect();
+    mongoose.disconnect(done);
 }
 
 if (require.main === module) {

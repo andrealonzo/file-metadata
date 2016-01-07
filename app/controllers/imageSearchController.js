@@ -2,23 +2,27 @@
 
 var SearchSchema = require('../models/search.js');
 
-function ShortenerController() {
+function ImageSearchController() {
     this.search = function(query, done) {
         saveSearch(query, function(err) {
             if (err) return done(err);
-            done([]);
+            return done([]);
         });
     }
     this.getRecentSearches = function(done) {
-        SearchSchema.find({}, function(err, searches) {
-            if(err) return done([]);
-            done(searches);
+        SearchSchema.find({}, {
+            _id: false,
+            term: true,
+            when: true
+        }, function(err, searches) {
+            if (err) return done([]);
+            return done(searches);
         });
     }
     var saveSearch = function(query, done) {
-
         var search = new SearchSchema();
-        search.value = query;
+        search.term = query;
+
         search.save(function(err) {
             if (err) return done(err);
             return done();
@@ -28,4 +32,4 @@ function ShortenerController() {
 
 }
 
-module.exports = ShortenerController
+module.exports = ImageSearchController

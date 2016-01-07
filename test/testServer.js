@@ -6,9 +6,10 @@
       superagent = require('superagent'),
       expect = require('expect.js');
     describe('server', function() {
-      before(function() {
+      before(function(done) {
         boot();
-        connectDB("testCollection");
+        done();
+       // connectDB("testCollection", done);
       });
       describe('homepage', function() {
         it('should respond to GET', function(done) {
@@ -28,8 +29,9 @@
       //     done();
       //   })
       // });
-      after(function() {
-        disconnectDB();
+      after(function(done) {
         shutdown();
+        done();
+      //  disconnectDB(done);
       });
     });

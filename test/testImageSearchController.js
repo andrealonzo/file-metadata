@@ -1,26 +1,24 @@
+require('dotenv').load();
 var connectDB = require('../').connectDB,
     disconnectDB = require('../').disconnectDB,
     mongoose = require('mongoose'),
-    dbURI = "mongodb://localhost:27017/test",
-    clearDB  = require('mocha-mongoose')(dbURI),
+    dbURI = process.env.MONGO_URI + "test",
+    clearDB = require('mocha-mongoose')(dbURI),
     expect = require('expect.js'),
     path = process.cwd(),
     ImageSearchController = require(path + '/app/controllers/imageSearchController.js');
-
 
 describe('imageSearchController', function() {
     var imageSearchCtrl;
 
     before(function(done) {
         imageSearchCtrl = new ImageSearchController();
-        
         if (mongoose.connection.db) return done();
-
-        mongoose.connect(dbURI, done);
+          mongoose.connect(dbURI, done);
     });
     beforeEach(function(done) {
-        mongoose.modelSchemas={};
-        mongoose.models={};
+        mongoose.modelSchemas = {};
+        mongoose.models = {};
         clearDB(done);
     });
     // describe('#getRecentSearches', function() {
@@ -39,10 +37,12 @@ describe('imageSearchController', function() {
 
 
     describe('#search', function() {
-
         it('should return array when searching', function(done) {
+
+
             var query = "lolcat";
             imageSearchCtrl.search(query, function(results) {
+
                 expect(results).to.be.an('array');
                 done();
             });
@@ -80,9 +80,11 @@ describe('imageSearchController', function() {
 
     after(function(done) {
         done();
+        // mongoose.disconnect(done);
         // mongoose.modelSchemas = {};
         // mongoose.models = {};
-        // disconnectDB();
+        // if (!mongoose.connection.db) return done();
+        // mongoose.disconnect(done);
         // mongoose.connection.on('disconnected', function() {
         //     console.log("done disconnecting");
         //     done();
