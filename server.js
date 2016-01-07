@@ -17,11 +17,11 @@ app.route('/')
 		res.sendFile(path + '/public/index.html');
 	});
 	
-app.route(/new\/(.*)/)
-	.get(serviceHandler.newUrl);
+app.route("/imagesearch/:id")
+	.get(serviceHandler.imageSearch);
 	
-app.route(/\/(.*)/)
-	.get(serviceHandler.getUrl);
+app.route("/latest/imagesearch/")
+	.get(serviceHandler.recentSearches);
 	
 		
 

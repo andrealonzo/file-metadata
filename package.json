@@ -33,6 +33,8 @@
   "devDependencies": {
     "expect.js": "^0.3.1",
     "mocha": "^2.3.4",
+    "mocha-mongoose": "^1.1.1",
+    "mongodb": "^2.1.3",
     "request": "^2.67.0",
     "superagent": "^1.6.1"
   }
