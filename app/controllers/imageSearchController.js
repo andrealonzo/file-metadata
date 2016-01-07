@@ -17,7 +17,7 @@ function ImageSearchController() {
         }, function(err, searches) {
             if (err) return done([]);
             return done(searches);
-        });
+        }).sort({when:-1});
     }
     var saveSearch = function(query, done) {
         var search = new SearchSchema();
