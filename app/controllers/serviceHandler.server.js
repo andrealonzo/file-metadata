@@ -4,8 +4,12 @@ function ServiceHandler () {
 	var imageSearchController = new ImageSearchController();
 	this.imageSearch = function (req, res) {
 		var query = req.params.id;
-		imageSearchController.search(query, function(results){
-			res.json(results);
+		var offset = 0;
+		if(req.query && req.query.offset){
+			offset = req.query.offset;
+		}
+		imageSearchController.search(query, offset,  function(results){
+				res.json(results);
 		});
 	};
 	

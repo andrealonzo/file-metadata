@@ -21,19 +21,6 @@ describe('imageSearchController', function() {
         mongoose.models = {};
         clearDB(done);
     });
-    // describe('#getRecentSearches', function() {
-
-    //     it('should return null when null URL is added', function(done) {
-
-    //         var url = null;
-    //         imageSearchCtrl.shortenUrl(url, function(shortenedUrl) {
-
-    //             expect(shortenedUrl).to.be(null);
-    //             done();
-    //         });
-    //     })
-
-    // });
 
 
     describe('#search', function() {
@@ -41,9 +28,22 @@ describe('imageSearchController', function() {
 
 
             var query = "lolcat";
-            imageSearchCtrl.search(query, function(results) {
+            var offset = "1";
+            imageSearchCtrl.search(query, offset, function(results) {
 
                 expect(results).to.be.an('array');
+                done();
+            });
+        })
+        
+        it('should return more than one result on a valid query', function(done) {
+
+
+            var query = "lolcat";
+            var offset = "1";
+            imageSearchCtrl.search(query, offset, function(results) {
+
+                expect(results.length).to.be.greaterThan(0);
                 done();
             });
         })
@@ -68,7 +68,8 @@ describe('imageSearchController', function() {
 
         it('should return array of length 1 when 1 search entered', function(done) {
             var query = "new search";
-            imageSearchCtrl.search(query, function(results) {
+            var offset = "1";
+            imageSearchCtrl.search(query, offset, function(results) {
                 imageSearchCtrl.getRecentSearches(function(results) {
                     expect(results.length).to.be.equal(1);
                     done();
