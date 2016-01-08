@@ -32,7 +32,7 @@ function ImageSearchController() {
             return done(searches);
         }).sort({
             when: -1
-        });
+        }).limit( 10 );
     }
     var saveSearch = function(query, done) {
         var search = new SearchSchema();
