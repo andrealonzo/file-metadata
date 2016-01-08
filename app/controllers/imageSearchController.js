@@ -17,7 +17,7 @@ function ImageSearchController() {
                 if (error) {
                     return done([]);
                 }
-                return done(body.d.results);
+                return done(parseResults(body.d.results));
             });
         });
 
@@ -42,6 +42,21 @@ function ImageSearchController() {
             if (err) return done(err);
             return done();
         })
+    };
+    
+    var parseResults = function(results){
+        var newResults = [];
+        for(var i=0; i < results.length; i++){
+            var newResult={};
+            newResult.url = results[i].MediaUrl;
+            newResult.context = results[i].SourceUrl;
+            newResult.snippet = results[i].Title;
+            if(results[i].Thumbnail){
+                newResult.thumbnail = results[i].Thumbnail.MediaUrl;
+            }
+            newResults.push(newResult);
+        }
+        return newResults;
     };
 
 
