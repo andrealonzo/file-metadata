@@ -23,12 +23,6 @@
         })
       });
 
-      // describe('database', function() {
-      //   it('should be connecting', function(done) {
-      //     expect(mongoose.connection.readyState).to.equal(mongoose.Connection.STATES.connected);
-      //     done();
-      //   })
-      // });
       after(function(done) {
         shutdown();
         done();

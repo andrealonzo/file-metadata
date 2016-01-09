@@ -16,6 +16,10 @@ app.route('/')
 	.get(function (req, res) {
 		res.sendFile(path + '/public/index.html');
 	});
+app.route('/js/index.js')
+	.get(function (req, res) {
+		res.sendFile(path + '/public/js/index.js');
+	});
 	
 app.route("/imagesearch/:id")
 	.get(serviceHandler.imageSearch);
