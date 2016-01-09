@@ -1,7 +1,5 @@
     var boot = require('../').boot,
       shutdown = require('../').shutdown,
-      connectDB = require('../').connectDB,
-      disconnectDB = require('../').disconnectDB,
       port = require('../').port,
       superagent = require('superagent'),
       expect = require('expect.js');
@@ -9,7 +7,6 @@
       before(function(done) {
         boot();
         done();
-       // connectDB("testCollection", done);
       });
       describe('homepage', function() {
         it('should respond to GET', function(done) {
@@ -26,6 +23,5 @@
       after(function(done) {
         shutdown();
         done();
-      //  disconnectDB(done);
       });
     });

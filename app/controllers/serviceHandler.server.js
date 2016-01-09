@@ -1,23 +1,19 @@
 'use strict';
-var ImageSearchController = require("../controllers/imageSearchController.js");
-function ServiceHandler () {
-	var imageSearchController = new ImageSearchController();
-	this.imageSearch = function (req, res) {
-		var query = req.params.id;
-		var offset = 0;
-		if(req.query && req.query.offset){
-			offset = req.query.offset;
+
+function ServiceHandler() {
+	this.analyzeFile = function(req, res) {
+		if(!req.file){
+			res.json({});
 		}
-		imageSearchController.search(query, offset,  function(results){
-				res.json(results);
+		res.json({
+			fileSize: req.file.size,
+			encoding: req.file.encoding,
+			mimetype: req.file.mimetype,
+			filename: req.file.originalname
 		});
 	};
-	
-	this.recentSearches = function (req, res) {
-		imageSearchController.getRecentSearches(function(results){
-			res.json(results);
-		});
-	};
+
+
 
 }
 

@@ -3,31 +3,26 @@
 var express = require('express');
 var path = process.cwd();
 var ServiceHandler = require(path + '/app/controllers/serviceHandler.server.js');
-var mongoose = require('mongoose');
 var serviceHandler = new ServiceHandler();
 
+var multer  = require('multer');
+var upload = multer();
+
+
 var app = express();
-require('dotenv').load();
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 
+
+app.route("/fileanalyze/")
+	.post(upload.single('inputFile'),serviceHandler.analyzeFile);
+
 app.route('/')
-	.get(function (req, res) {
+	.get(function(req, res) {
 		res.sendFile(path + '/public/index.html');
 	});
-app.route('/js/index.js')
-	.get(function (req, res) {
-		res.sendFile(path + '/public/js/index.js');
-	});
-	
-app.route("/imagesearch/:id")
-	.get(serviceHandler.imageSearch);
-	
-app.route("/latest/imagesearch/")
-	.get(serviceHandler.recentSearches);
-	
-		
+
 
 var port = process.env.PORT || 8080;
 var server;
@@ -45,17 +40,8 @@ var shutdown = function() {
 	}
 }
 
-var connectDB = function(dbName, done) {
-    if (mongoose.connection.db) return done();
-	mongoose.connect(process.env.MONGO_URI + dbName, done);
-}
-var disconnectDB = function(done) {
-    mongoose.connection.close();
-    mongoose.disconnect(done);
-}
 
 if (require.main === module) {
-	connectDB(process.env.MONGO_DB);
 	boot();
 }
 else {
@@ -63,6 +49,4 @@ else {
 	exports.boot = boot;
 	exports.shutdown = shutdown;
 	exports.port = port;
-	exports.connectDB = connectDB;
-	exports.disconnectDB = disconnectDB;
 }
