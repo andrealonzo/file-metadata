@@ -3,7 +3,7 @@
 function ServiceHandler() {
 	this.analyzeFile = function(req, res) {
 		if(!req.file){
-			res.json({});
+			return res.json({});
 		}
 		res.json({
 			fileSize: req.file.size,
