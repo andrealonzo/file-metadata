@@ -19,11 +19,10 @@ $ make test
 
 ## Code coverage
 
-To view the code test coverage, run 
+To run the code test coverage, execute
 
 ```bash
-$ istanbul cover node_modules/.bin/_mocha test
-$ istanbul report html
+$ make test-coverage
 ```
 
 You can go to /coverage to view the report. 
